@@ -17,7 +17,7 @@ const App = () => {
     event.preventDefault();
 
     const newTodo = {
-      id: Date.now(),
+      id: crypto.randomUUID(),
       title: newTitle,
       contents: newContents,
       isDone: false,
@@ -26,9 +26,8 @@ const App = () => {
     setTodoList([...todoList, newTodo]);
   };
 
-  const removeTodo = (id) => {
+  const removeTodo = (id) =>
     setTodoList(todoList.filter((todo) => todo.id !== id));
-  };
 
   const toggleTodo = (id) => {
     setTodoList(
@@ -65,7 +64,7 @@ const App = () => {
               return (
                 <div key={todo.id}>
                   <p>{todo.title}</p>
-                  <p>{todo.body}</p>
+                  <p>{todo.contents}</p>
                   <button
                     onClick={() => {
                       removeTodo(todo.id);
@@ -92,7 +91,7 @@ const App = () => {
               return (
                 <div key={todo.id}>
                   <p>{todo.title}</p>
-                  <p>{todo.body}</p>
+                  <p>{todo.contents}</p>
                   <button
                     onClick={() => {
                       removeTodo(todo.id);
